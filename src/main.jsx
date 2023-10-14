@@ -6,13 +6,17 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import App from "./App.jsx";
-import Nav from "./components/Navbar/Nav.jsx";
+import Nav from "./components/Navbar/Nav";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <div>TODO: landing page</div>,
+        element: <div>
+          <Auth0ProviderWithHistory>
+            <Nav />
+          </Auth0ProviderWithHistory>
+        </div>,
     },
     {
         path: "/sign-in",
@@ -30,10 +34,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Auth0ProviderWithHistory>
-            <RouterProvider router={router} />
-            <Nav />
-            <App />
-        </Auth0ProviderWithHistory>
+        <RouterProvider router={router}>
+          <Auth0ProviderWithHistory>
+              <App />
+          </Auth0ProviderWithHistory>
+        </RouterProvider>
     </React.StrictMode>,
 )
