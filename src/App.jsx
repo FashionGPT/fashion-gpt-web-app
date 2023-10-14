@@ -1,25 +1,27 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
-import { useAuth0 } from "@auth0/auth0-react";
+import {useAuth0} from "@auth0/auth0-react";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth0();
+    const { user, error, isLoading } = useAuth0()
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error.message}</div>;
 
+    if (user) {
+        return (
+            <div>
+                <h1>
+                    Welcome {user.name}!
+                </h1>
+            </div>
+        );
+    }
     return (
-    <>
-      <h1>Fashion-GPT</h1>
-      <div className="card">
-        <button onClick={() => loginWithRedirect()}>Log In</button>
-        <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-          Log Out</button>
-      </div>
-      <p className="read-the-docs">
-        Click on the Login for Auth0
-      </p>
-    </>
-  )
+        <div>
+            <h1>
+                Welcome to Fashion-GPT, please LOGIN first for the service!
+            </h1>
+        </div>
+    );
 }
-
-export default App
+export default App;
