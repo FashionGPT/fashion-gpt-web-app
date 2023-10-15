@@ -1,6 +1,6 @@
-import React from "react";
 import "./Nav.css";
 import {useAuth0} from "@auth0/auth0-react";
+import Profile from "../Profile/Profile.jsx";
 
 function Nav() {
   const { logout, loginWithRedirect } = useAuth0();
@@ -14,6 +14,7 @@ function Nav() {
         <button onClick={() => loginWithRedirect()}>Log In</button>
         <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
           Log Out</button>
+        <Profile />
       </div>
     </div>
   );

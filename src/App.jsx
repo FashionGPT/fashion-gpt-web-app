@@ -18,9 +18,9 @@ function App() {
     }
     return (
         <div>
-            <h1>
+            <p>
                 Welcome to Fashion-GPT, please LOGIN first for the service!
-            </h1>
+            </p>
         </div>
     );
 }
