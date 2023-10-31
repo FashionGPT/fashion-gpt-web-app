@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-function CommunityPage () {
+function OutfitSelector () {
 
     const [posts, setPosts] = React.useState([
         {
@@ -89,4 +89,4 @@ function CommunityPage () {
     )
 }
 
-export default CommunityPage;
+export default OutfitSelector;
