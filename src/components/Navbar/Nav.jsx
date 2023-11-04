@@ -6,17 +6,16 @@ function Nav() {
   const { logout, loginWithRedirect } = useAuth0();
 
   return (
-    <div>
       <div className="navbar">
-        <a href="/" className="title">
-          Fashion-GPT
-        </a>
-        <button onClick={() => loginWithRedirect()}>Log In</button>
-        <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-          Log Out</button>
+        <ul>
+          <li><a href="/">FashionGPT</a></li>
+          <li><a style={{justifyContent: "right"}} onClick={() => loginWithRedirect()}>Log In</a></li>
+          <li><a style={{justifyContent: "right"}} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+              Log Out</a></li>
+        </ul>
+
         <Profile />
       </div>
-    </div>
   );
 }
 
