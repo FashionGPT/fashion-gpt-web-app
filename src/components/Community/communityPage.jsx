@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import "./card.css";
 
 
 
@@ -10,7 +11,7 @@ function CommunityPage () {
         //     _id: "6515c8057b142891511ab2f8",
         //     title: "test title",
         //     text: "test texts",
-        //     user: "user",
+        //     user: "user",`
         //     outfit: "test"
         // }
     ]);
@@ -71,7 +72,7 @@ function CommunityPage () {
             {
                 posts.map((post) => {
                     return (
-                        <div key={post._id}>
+                        <div className="card-container">
                             <p>{post.title}</p>
                             <p>{post.text}</p>
                         </div>
@@ -83,3 +84,4 @@ function CommunityPage () {
 }
 
 export default CommunityPage;
+
