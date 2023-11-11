@@ -8,6 +8,7 @@ import {
 import App from "./App.jsx";
 import Nav from "./components/Navbar/Nav";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history.jsx";
+import CommunityPage from './components/Community/communityPage';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         path: "/prompt",
         element: <div>TODO: prompt page</div>,
     },
+    {
+        path: "/community",
+        element: <CommunityPage />
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
