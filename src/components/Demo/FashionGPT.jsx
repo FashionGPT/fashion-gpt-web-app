@@ -11,11 +11,12 @@ const FashionGPT = () => {
   const fetchChatGPTResponse = async () => {
     setIsLoading(true);
 
-    const data = { prompt: userInput };
+    const data = { prompt: userInput,
+                    userID: "6513978b5a313f06321da9eb"};
 
     try {
       const response = await fetch(
-        `${baseAPIURL}/ChatGPT/create-outfit-from-chatgpt`,
+        `${baseAPIURL}/Generation/outfit`,
         {
           method: "POST",
           headers: {
@@ -25,10 +26,8 @@ const FashionGPT = () => {
         }
       );
       const result = await response.json();
-      // alert(
-      //   `Pants: ${result.pants}\nShirt: ${result.shirt}\nShoes: ${result.shoes}`
-      // );
-      setResult(`Pants: ${result.pants}\nShirt: ${result.shirt}\nShoes: ${result.shoes}`);
+
+      setResult(`Pants: ${result.result.pants.name}\nShirt: ${result.result.shirt.name}\nShoes: ${result.result.shoes.name}`);
       setUserInput('');
       setShowAlert(true);
       setAlertData(result);

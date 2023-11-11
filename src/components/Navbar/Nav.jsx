@@ -7,8 +7,10 @@ function Nav() {
 
   return (
       <div className="navbar">
-        <ul>
-          <li><a href="/">FashionGPT</a></li>
+        <ul style={{display: "flex"}}>
+            <div className="title">
+                <li><a href="/">FashionGPT</a></li>
+            </div>
           <li><a style={{justifyContent: "right"}} onClick={() => loginWithRedirect()}>Log In</a></li>
           <li><a style={{justifyContent: "right"}} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
               Log Out</a></li>
