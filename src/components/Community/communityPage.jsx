@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import OutfitSelector from './outfitSelector';
+import "./card.css";
 
 
 
@@ -80,7 +81,7 @@ function CommunityPage () {
             {
                 posts.map((post) => {
                     return (
-                        <div key={post._id}>
+                        <div className="card-container">
                             <p>{post.title}</p>
                             <p>{post.text}</p>
                         </div>
