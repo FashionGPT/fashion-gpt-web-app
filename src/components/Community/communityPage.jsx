@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import OutfitSelector from './outfitSelector';
 
 
 
@@ -48,6 +49,7 @@ function CommunityPage () {
             <h1>Community Page</h1>
             <input placeholder='title' value={titleText} onChange={(event) => {setTitleText(event.target.value)}}></input>
             <input placeholder='text' value={postText} onChange={(event) => {setPostText(event.target.value)}}></input>
+            <OutfitSelector></OutfitSelector>
             <button onClick={() => {
                 let data = JSON.stringify({
                     "title": titleText,
