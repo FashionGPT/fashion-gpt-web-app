@@ -1,10 +1,20 @@
 import "./landingPage.css";
-import Auth0ProviderWithHistory from "../../auth/auth0-provider-with-history.jsx";
 import {useAuth0} from "@auth0/auth0-react";
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
-    const { logout, loginWithRedirect } = useAuth0();
+    const { loginWithRedirect } = useAuth0();
+    const { user } = useAuth0()
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        console.log(user);
+        if (user) {
+            navigate("/prompt");
+        }
+    }, [user, navigate]);
+
     return (
         <div style={{display: "flex", flexDirection: "row", height: "100%"}}>
             <div style={{display: "flex", flex: 0.6, background: "#6E1EAD"}}>
@@ -17,11 +27,9 @@ function LandingPage() {
             </svg>
             </div>
             <div style={{display: "flex", flex: 0.4, background: "#202325", flexDirection: "column"}}>
-                <Auth0ProviderWithHistory>
                 <div className="LoginButton">
                     <button type = "button" className="Button" onClick={() => loginWithRedirect()}>Login</button>
                 </div>
-                </Auth0ProviderWithHistory>
             </div>
         </div>
     )

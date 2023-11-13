@@ -27,6 +27,13 @@ const router = createBrowserRouter([
         path: "/prompt",
         element: <div>TODO: prompt page</div>,
     },
+    {
+        path: "/test",
+        element: <Auth0ProviderWithHistory>
+            <Nav />
+            <App />
+        </Auth0ProviderWithHistory>
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
