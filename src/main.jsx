@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import LandingPage from './components/LandingPage/landingPage.jsx';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -13,12 +14,7 @@ import CommunityPage from './components/Community/communityPage';
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <div>
-            <Auth0ProviderWithHistory>
-                <Nav />
-                <App />
-            </Auth0ProviderWithHistory>
-        </div>,
+        element: <Auth0ProviderWithHistory><LandingPage></LandingPage></Auth0ProviderWithHistory>
     },
     {
         path: "/sign-in",
@@ -31,6 +27,13 @@ const router = createBrowserRouter([
     {
         path: "/prompt",
         element: <div>TODO: prompt page</div>,
+    },
+    {
+        path: "/test",
+        element: <Auth0ProviderWithHistory>
+            <Nav />
+            <App />
+        </Auth0ProviderWithHistory>
     },
     {
         path: "/community",
