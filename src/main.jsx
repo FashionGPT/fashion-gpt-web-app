@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import LandingPage from './components/LandingPage/landingPage.jsx';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -12,12 +13,7 @@ import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history.jsx";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <div>
-            <Auth0ProviderWithHistory>
-                <Nav />
-                <App />
-            </Auth0ProviderWithHistory>
-        </div>,
+        element: <Auth0ProviderWithHistory><LandingPage></LandingPage></Auth0ProviderWithHistory>
     },
     {
         path: "/sign-in",
