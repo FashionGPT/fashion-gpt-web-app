@@ -5,10 +5,12 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import { ChakraProvider } from '@chakra-ui/react'
 import App from "./App.jsx";
 import Nav from "./components/Navbar/Nav";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history.jsx";
 import CommunityPage from './components/Community/communityPage';
+import Prompt from './components/Prompt/Prompt'
 
 const router = createBrowserRouter([
     {
@@ -30,7 +32,14 @@ const router = createBrowserRouter([
     },
     {
         path: "/prompt",
-        element: <div>TODO: prompt page</div>,
+        element: <div>
+            <Auth0ProviderWithHistory>
+                <ChakraProvider>
+                    <Nav />
+                    <Prompt />
+                </ChakraProvider>
+            </Auth0ProviderWithHistory>
+        </div>,
     },
     {
         path: "/community",
