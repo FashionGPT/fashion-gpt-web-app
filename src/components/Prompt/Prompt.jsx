@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { baseAPIURL } from "../../constants/constants";
 import {HStack, Textarea, Button, VStack, Divider, Text, Spinner} from '@chakra-ui/react'
 function Prompt() {
@@ -7,6 +7,7 @@ function Prompt() {
     const [showAlert, setShowAlert] = useState(false);
     const [alertData, setAlertData] = useState({});
     const [result, setResult] = useState('');
+    const [generatedOutfit, setGeneratedOutfit] = useState(undefined);
 
     const fetchChatGPTResponse = async () => {
         setIsLoading(true);
@@ -26,6 +27,8 @@ function Prompt() {
                 }
             );
             const result = await response.json();
+
+            setGeneratedOutfit(result?.result);
 
             setResult(`Pants: ${result.result.pants.name}\nShirt: ${result.result.shirt.name}\nShoes: ${result.result.shoes.name}`);
             setUserInput('');
@@ -74,6 +77,40 @@ function Prompt() {
                 <Text fontSize='4xl'>{result}</Text>
             </VStack>
 
+            {
+                generatedOutfit && (
+                    <div>
+                        <div>
+                            { generatedOutfit?.shirt &&
+                                <div>
+                                    <p>
+                                        {generatedOutfit?.shirt?.name}
+                                    </p>
+                                    <img src={generatedOutfit?.shirt?.imageUrl}></img>
+                                </div>
+                            }
+
+                            { generatedOutfit?.pants &&
+                                <div>
+                                    <p>
+                                        {generatedOutfit?.pants?.name}
+                                    </p>
+                                    <img src={generatedOutfit?.pants?.imageUrl}></img>
+                                </div>
+                            }
+
+                            { generatedOutfit?.shoes &&
+                                <div>
+                                    <p>
+                                        {generatedOutfit?.shoes?.name}
+                                    </p>
+                                    <img src={generatedOutfit?.shoes?.imageUrl}></img>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 }

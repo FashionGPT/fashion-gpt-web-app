@@ -46,7 +46,10 @@ const router = createBrowserRouter([
     },
     {
         path: "/community",
-        element: <CommunityPage />
+        element: <Auth0ProviderWithHistory>
+            <Nav />
+            <CommunityPage />
+        </Auth0ProviderWithHistory>
     }
 ]);
 
