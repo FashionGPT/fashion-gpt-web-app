@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { baseAPIURL } from "../../constants/constants";
+import {useAuth0} from "@auth0/auth0-react";
 
 const FashionGPT = () => {
   const [userInput, setUserInput] = useState("");
@@ -7,12 +8,12 @@ const FashionGPT = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertData, setAlertData] = useState({});
   const [result, setResult] = useState('');
+  const { user } = useAuth0();
 
   const fetchChatGPTResponse = async () => {
     setIsLoading(true);
 
-    const data = { prompt: userInput,
-                    userID: "6513978b5a313f06321da9eb"};
+    const data = { prompt: userInput, userID: user?.sub};
 
     try {
       const response = await fetch(
@@ -21,6 +22,7 @@ const FashionGPT = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "user": JSON.stringify(user)
           },
           body: JSON.stringify(data),
         }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { baseAPIURL } from "../../constants/constants";
 import {HStack, Textarea, Button, VStack, Divider, Text, Spinner} from '@chakra-ui/react'
+import {useAuth0} from "@auth0/auth0-react";
 function Prompt() {
     const [userInput, setUserInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -9,11 +10,13 @@ function Prompt() {
     const [result, setResult] = useState('');
     const [generatedOutfit, setGeneratedOutfit] = useState(undefined);
 
+    const { user } = useAuth0();
+
     const fetchChatGPTResponse = async () => {
         setIsLoading(true);
 
         const data = { prompt: userInput,
-            userID: "651397a75a313f06321da9ec"};
+            userID: user.sub};
 
         try {
             const response = await fetch(
@@ -22,6 +25,7 @@ function Prompt() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
+                        "user": JSON.stringify(user)
                     },
                     body: JSON.stringify(data),
                 }

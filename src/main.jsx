@@ -19,23 +19,14 @@ const router = createBrowserRouter([
         element: <Auth0ProviderWithHistory><LandingPage></LandingPage></Auth0ProviderWithHistory>
     },
     {
-        path: "/sign-in",
-        element: <div>TODO: sign in page</div>,
-    },
-    {
-        path: "/sign-up",
-        element: <div>TODO: sign up page</div>,
-    },
-    {
         path: "/prompt",
-        element: <div>
+        element:
             <Auth0ProviderWithHistory>
                 <ChakraProvider>
                     <Nav />
                     <Prompt />
                 </ChakraProvider>
-            </Auth0ProviderWithHistory>
-        </div>,
+            </Auth0ProviderWithHistory>,
     },
     {
         path: "/test",

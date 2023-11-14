@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import "./card.css";
+import {useAuth0} from "@auth0/auth0-react";
 
 
 
@@ -13,14 +14,16 @@ function CommunityPage () {
 
     const [outfits, setOutfits] = React.useState([]);
     const [selectedOutfitId, setSelectedOutfitId] = React.useState('');
-    const [userId, setUserId] = React.useState("6513978b5a313f06321da9eb");
+    const { user } = useAuth0();
 
     function fetchPosts() {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
             url: 'http://localhost:8081/api/v1/Post/community',
-            headers: { }
+            headers: {
+                "user": JSON.stringify(user)
+            }
         };
 
         axios.request(config)
@@ -37,28 +40,31 @@ function CommunityPage () {
     }
 
     React.useEffect(() => {
+        if (user) {
+            fetchPosts();
 
-        fetchPosts();
+            axios.post('http://localhost:8081/api/v1/Clothing/outfits-for-user', {
+                "userID": user?.sub
+            }, {
+                headers: {"user": JSON.stringify(user)}
+            })
+                .then((response) => {
+                    let arr = response?.data?.result;
+                    if (arr) {
+                        arr = arr.reverse();
+                    }
+                    console.debug("Got outfits for user", arr);
+                    setOutfits(arr);
+                    if (arr && arr.length > 0) {
+                        setSelectedOutfitId(arr[0]._id);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error getting outfits for user", error);
+                });
 
-        axios.post('http://localhost:8081/api/v1/Clothing/outfits-for-user', {
-            "userID": userId
-        })
-        .then((response) => {
-            let arr = response?.data?.result;
-            if (arr) {
-                arr = arr.reverse();
-            }
-            console.debug("Got outfits for user", arr);
-            setOutfits(arr);
-            if (arr && arr.length > 0) {
-                setSelectedOutfitId(arr[0]._id);
-            }
-        })
-        .catch((error) => {
-            console.error("Error getting outfits for user", error);
-        });
-
-    }, []);
+        }
+    }, [user]);
 
     return (
         <div>
@@ -90,7 +96,7 @@ function CommunityPage () {
                     "title": titleText,
                     "text": postText,
                     "outfit": selectedOutfitId,//"65139624709491f3b5286cf4",
-                    "user": userId
+                    "userId": user?.sub
                   });
 
                   let config = {
@@ -98,7 +104,8 @@ function CommunityPage () {
                     maxBodyLength: Infinity,
                     url: 'http://localhost:8081/api/v1/Post/create',
                     headers: {
-                      'Content-Type': 'application/json'
+                      'Content-Type': 'application/json',
+                      "user": JSON.stringify(user)
                     },
                     data : data
                   };
