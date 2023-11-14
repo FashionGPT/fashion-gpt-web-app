@@ -8,6 +8,7 @@ import {
 import App from "./App.jsx";
 import Nav from "./components/Navbar/Nav";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history.jsx";
+import PromptPage from './components/PromptPage/PromptPage';
 
 const router = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/prompt",
-        element: <div>TODO: prompt page</div>,
+        element: <PromptPage/>
     },
 ]);
 
