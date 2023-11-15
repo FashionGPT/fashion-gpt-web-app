@@ -126,11 +126,11 @@ function CommunityPage () {
                 posts.map((post) => {
                     return (
                         <div className="card-container" key={post._id}>
-                            <p>{post.title}</p>
-                            <p>{post.text}</p>
-                            <div>
+                            <p className="card-title">{post.title}</p>
+                            <p className="card-description">{post.text}</p>
+                            <div className="card-outfit-content">
                                 { post.outfit.shirt &&
-                                    <div>
+                                    <div className="card-outfit-piece">
                                         <p>
                                             {post.outfit.shirt.name}
                                         </p>
@@ -139,7 +139,7 @@ function CommunityPage () {
                                 }
 
                                 { post.outfit.pants &&
-                                    <div>
+                                    <div className="card-outfit-piece">
                                         <p>
                                             {post.outfit.pants.name}
                                         </p>
@@ -148,7 +148,7 @@ function CommunityPage () {
                                 }
 
                                 { post.outfit.shoes &&
-                                    <div>
+                                    <div className="card-outfit-piece">
                                         <p>
                                             {post.outfit.shoes.name}
                                         </p>
