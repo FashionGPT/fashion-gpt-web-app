@@ -4,7 +4,7 @@
 }
 
 .LandingContainer {
-    background-color: #6E1EAD;;
+    background-color: #6E1EAD;
     top: 0;
     left: 0;
     width: 100%;
@@ -65,4 +65,8 @@
     align-items: center;
     width: 100%;
     flex-grow: 1;
+}
+
+.Button:hover {
+    background-color: #6E1EAD;
 }

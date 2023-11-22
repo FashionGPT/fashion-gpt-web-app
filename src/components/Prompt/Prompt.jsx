@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { baseAPIURL } from "../../constants/constants";
-import {HStack, Textarea, Button, VStack, Divider, Text, Spinner} from '@chakra-ui/react'
+import {HStack, Textarea, Button, VStack, Divider, Text, Spinner, SimpleGrid } from '@chakra-ui/react'
+import { Card, Image, CardBody, CardFooter, Stack, Spacer } from '@chakra-ui/react'
 import {useAuth0} from "@auth0/auth0-react";
 function Prompt() {
     const [userInput, setUserInput] = useState("");
@@ -49,6 +50,19 @@ function Prompt() {
         setUserInput(e.target.value);
     };
 
+    function capitalizeEachWord(str) {
+        // Split the string into words
+        const words = str.split(' ');
+
+        // Capitalize the first letter of each word
+        const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+
+        // Join the words back together
+        const result = capitalizedWords.join(' ');
+
+        return result;
+    }
+
     if (isLoading) {
         return <div>
             <VStack>
@@ -69,6 +83,11 @@ function Prompt() {
         </div>;
     }
 
+    const handleClick = (event) => {
+        const url = event.target.getAttribute('data-url');
+        window.open(url, '_blank');
+    };
+
     return (
         <div>
             <VStack>
@@ -78,43 +97,73 @@ function Prompt() {
                     <Button colorScheme='purple' onClick={fetchChatGPTResponse}>Generate</Button>
                 </HStack>
                 <Divider/>
-                <Text fontSize='4xl'>{result}</Text>
-            </VStack>
 
-            {
-                generatedOutfit && (
-                    <div>
-                        <div>
-                            { generatedOutfit?.shirt &&
-                                <div>
-                                    <p>
-                                        {generatedOutfit?.shirt?.name}
-                                    </p>
-                                    <img src={generatedOutfit?.shirt?.imageUrl}></img>
-                                </div>
-                            }
-
-                            { generatedOutfit?.pants &&
-                                <div>
-                                    <p>
-                                        {generatedOutfit?.pants?.name}
-                                    </p>
-                                    <img src={generatedOutfit?.pants?.imageUrl}></img>
-                                </div>
-                            }
-
-                            { generatedOutfit?.shoes &&
-                                <div>
-                                    <p>
-                                        {generatedOutfit?.shoes?.name}
-                                    </p>
-                                    <img src={generatedOutfit?.shoes?.imageUrl}></img>
-                                </div>
-                            }
+                {
+                    generatedOutfit && (
+                        <div style={{ display: 'flex', justifyContent: 'center'}}>
+                            <SimpleGrid columns={3} gap={10}>
+                                <Card display='flex' justifyContent='center' maxW='sm'>
+                                    <CardBody>
+                                        <Image
+                                            src={generatedOutfit?.shirt?.imageUrl}
+                                            borderRadius='lg'
+                                        />
+                                    </CardBody>
+                                    <Spacer/>
+                                    <Stack alignItems={"center"} mt='6' spacing='3'>
+                                        <Text color='black.600' fontSize='2xl'>{capitalizeEachWord(generatedOutfit?.shirt?.name)}</Text>
+                                    </Stack>
+                                    <CardFooter justifyContent={"center"}>
+                                            <Button variant='solid' colorScheme='purple'
+                                                    data-url={generatedOutfit?.shirt?.amazonLink}
+                                                    onClick={handleClick}>
+                                                    Check it out
+                                            </Button>
+                                    </CardFooter>
+                                </Card>
+                                <Card maxW='sm'>
+                                    <CardBody>
+                                        <Image
+                                            src={generatedOutfit?.pants?.imageUrl}
+                                            borderRadius='lg'
+                                        />
+                                    </CardBody>
+                                    <Spacer/>
+                                    <Stack alignItems={"center"} mt='6' spacing='3'>
+                                        <Text color='black.600' fontSize='2xl'>{capitalizeEachWord(generatedOutfit?.pants?.name)}</Text>
+                                    </Stack>
+                                    <CardFooter justifyContent={"center"}>
+                                        <Button variant='solid' colorScheme='purple'
+                                                data-url={generatedOutfit?.pants?.amazonLink}
+                                                onClick={handleClick}>
+                                            Check it out
+                                        </Button>
+                                    </CardFooter>
+                                </Card>
+                                <Card maxW='sm'>
+                                    <CardBody>
+                                        <Image
+                                            src={generatedOutfit?.shoes?.imageUrl}
+                                            borderRadius='lg'
+                                        />
+                                    </CardBody>
+                                    <Spacer/>
+                                    <Stack alignItems={"center"} mt='6' spacing='3'>
+                                        <Text color='black.600' fontSize='2xl'>{capitalizeEachWord(generatedOutfit?.shoes?.name)}</Text>
+                                    </Stack>
+                                    <CardFooter justifyContent={"center"}>
+                                        <Button variant='solid' colorScheme='purple'
+                                                data-url={generatedOutfit?.shoes?.amazonLink}
+                                                onClick={handleClick}>
+                                            Check it out
+                                        </Button>
+                                    </CardFooter>
+                                </Card>
+                            </SimpleGrid>
                         </div>
-                    </div>
-                )
-            }
+                    )
+                }
+            </VStack>
         </div>
     );
 }
