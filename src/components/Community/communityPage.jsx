@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import "./card.css";
 import {useAuth0} from "@auth0/auth0-react";
+// import { Frame } from "./Frame";
 
 
 
@@ -68,99 +69,112 @@ function CommunityPage () {
 
     return (
         <div>
-            <h1>Community Page</h1>
-            <input placeholder='title' value={titleText} onChange={(event) => {setTitleText(event.target.value)}}></input>
-            <input placeholder='text' value={postText} onChange={(event) => {setPostText(event.target.value)}}></input>
-            <select id="outfitForm" placeholder="select outfit" data-style="btn-info" name="selectpicker" onChange={(e) => {
+            <div className="black-background"> 
+                <div className="cm-title">Community Page</div>
+                <div className="inputBox">
+                <input placeholder='title' value={titleText} onChange={(event) => {setTitleText(event.target.value)}}></input>
+                <input placeholder='text' value={postText} onChange={(event) => {setPostText(event.target.value)}}></input>
+                <select id="outfitForm" placeholder="select outfit" data-style="btn-info" name="selectpicker" onChange={(e) => {
                 setSelectedOutfitId(e?.target?.value || '');
-            }}>
+                }}>
                 {
-                  outfits.map((outfit) => {
-                    return (
-                    <option
-                      key={outfit._id}
-                      value={outfit._id}
-                      onClick={() => {
-                        setOutfitText(outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name);
-                        // setSelectedOutfitId(outfit?._id || '');
-                        console.debug("Selected outfit", outfit?._id);
-                      }}
-                      >
-                        {outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name}
-                      </option>);
-                  })
-                }
-            </select>
-            <button onClick={() => {
-                let data = JSON.stringify({
-                    "title": titleText,
-                    "text": postText,
-                    "outfit": selectedOutfitId,//"65139624709491f3b5286cf4",
-                    "userId": user?.sub
-                  });
+                        outfits.map((outfit) => {
+                        return (
+                        <option
+                            key={outfit._id}
+                            value={outfit._id}
+                            onClick={() => {
+                            setOutfitText(outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name);
+                            // setSelectedOutfitId(outfit?._id || '');
+                            console.debug("Selected outfit", outfit?._id);
+                            }}
+                            >
+                            {outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name}
+                            </option>);
+                        })
+                    }
+                </select>
+                <button onClick={() => {
+                    let data = JSON.stringify({
+                        "title": titleText,
+                        "text": postText,
+                        "outfit": selectedOutfitId,//"65139624709491f3b5286cf4",
+                        "userId": user?.sub
+                        });
 
-                  let config = {
-                    method: 'post',
-                    maxBodyLength: Infinity,
-                    url: 'http://localhost:8081/api/v1/Post/create',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      "user": JSON.stringify(user)
-                    },
-                    data : data
-                  };
+                        let config = {
+                        method: 'post',
+                        maxBodyLength: Infinity,
+                        url: 'http://localhost:8081/api/v1/Post/create',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "user": JSON.stringify(user)
+                        },
+                        data : data
+                        };
 
-                  axios.request(config)
-                  .then((response) => {
-                    console.log(JSON.stringify(response.data));
-                    setTitleText('');
-                    setPostText('');
-                    fetchPosts();
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
+                        axios.request(config)
+                        .then((response) => {
+                        console.log(JSON.stringify(response.data));
+                        setTitleText('');
+                        setPostText('');
+                        fetchPosts();
+                        })
+                        .catch((error) => {
+                        console.log(error);
+                        });
 
-            }}>Submit</button>
-            {
-                posts.map((post) => {
-                    return (
-                        <div className="card-container" key={post._id}>
-                            <p className="card-title">{post.title}</p>
-                            <p className="card-description">{post.text}</p>
-                            <div className="card-outfit-content">
-                                { post.outfit.shirt &&
-                                    <div className="card-outfit-piece">
-                                        <p>
-                                            {post.outfit.shirt.name}
-                                        </p>
-                                        <img src={post.outfit.shirt.imageUrl}></img>
+                }}>Submit</button>
+                </div>
+
+                <div className="repeating-cards" >
+                    {
+                        posts.map((post) => {
+                            return (
+                                <div className="card" key={post._id}>
+                                    <div className="image-stack">
+                                        { post.outfit.shirt &&
+                                            <div className="card-outfit-piece">
+                                                {/* <p>
+                                                    {post.outfit.shirt.name}
+                                                </p> */}
+                                                <img className="top" alt="Top" src={post.outfit.shirt.imageUrl}></img>
+                                            </div>
+                                        }
+                                        { post.outfit.pants &&
+                                            <div className="card-outfit-piece">
+                                                {/* <p>
+                                                    {post.outfit.pants.name}
+                                                </p> */}
+                                                <img className="middle" alt="Middle" src={post.outfit.pants.imageUrl}></img>
+                                            </div>
+                                        }
+
+                                        { post.outfit.shoes &&
+                                            <div className="card-outfit-piece">
+                                                {/* <p>
+                                                    {post.outfit.shoes.name}
+                                                </p> */}
+                                                <img className="bottom" alt="Bottom"  src={post.outfit.shoes.imageUrl}></img>
+                                            </div>
+                                        }
                                     </div>
-                                }
-
-                                { post.outfit.pants &&
-                                    <div className="card-outfit-piece">
-                                        <p>
-                                            {post.outfit.pants.name}
-                                        </p>
-                                        <img src={post.outfit.pants.imageUrl}></img>
+                                    <div className="text">
+                                        <div className="description-box">
+                                            <div className="description">{post.text}</div>
+                                        </div>
+                                        <div className="title-box">
+                                            <div className="title">{post.title}</div>
+                                        </div>
                                     </div>
-                                }
-
-                                { post.outfit.shoes &&
-                                    <div className="card-outfit-piece">
-                                        <p>
-                                            {post.outfit.shoes.name}
-                                        </p>
-                                        <img src={post.outfit.shoes.imageUrl}></img>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    )
-                })
-            }
-        </div>
+                                    
+                                </div>    
+                            );                    
+                        })
+                    }
+                </div>    
+            </div>    
+        </div>           
     )
 }
 
