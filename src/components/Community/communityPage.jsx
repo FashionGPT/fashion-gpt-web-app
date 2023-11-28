@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import "./card.css";
 import {useAuth0} from "@auth0/auth0-react";
@@ -12,6 +12,25 @@ function CommunityPage () {
     const [titleText, setTitleText] = React.useState('');
     const [postText, setPostText] = React.useState('');
     const [outfitText, setOutfitText] = React.useState('');
+
+    function updateFontSize(text) {
+        var x = 40;
+        for (let i = 0; i < text.length; i++) {
+            x = x * .95;
+        }
+        x = Math.min(x, 5);
+        x = Math.max(x,1);
+        return x;
+    }
+    function updateFontSizeTitle(text) {
+        var x = 40;
+        for (let i = 0; i < text.length; i++) {
+            x = x * .95;
+        }
+        x = Math.min(x, 1.5);
+        x = Math.max(x , 0.5);
+        return x;
+    }
 
     const [outfits, setOutfits] = React.useState([]);
     const [selectedOutfitId, setSelectedOutfitId] = React.useState('');
@@ -72,59 +91,59 @@ function CommunityPage () {
             <div className="black-background"> 
                 <div className="cm-title">Community Page</div>
                 <div className="inputBox">
-                <input placeholder='title' value={titleText} onChange={(event) => {setTitleText(event.target.value)}}></input>
-                <input placeholder='text' value={postText} onChange={(event) => {setPostText(event.target.value)}}></input>
-                <select id="outfitForm" placeholder="select outfit" data-style="btn-info" name="selectpicker" onChange={(e) => {
-                setSelectedOutfitId(e?.target?.value || '');
-                }}>
-                {
-                        outfits.map((outfit) => {
-                        return (
-                        <option
-                            key={outfit._id}
-                            value={outfit._id}
-                            onClick={() => {
-                            setOutfitText(outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name);
-                            // setSelectedOutfitId(outfit?._id || '');
-                            console.debug("Selected outfit", outfit?._id);
-                            }}
-                            >
-                            {outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name}
-                            </option>);
-                        })
-                    }
-                </select>
-                <button onClick={() => {
-                    let data = JSON.stringify({
-                        "title": titleText,
-                        "text": postText,
-                        "outfit": selectedOutfitId,//"65139624709491f3b5286cf4",
-                        "userId": user?.sub
-                        });
+                    <input placeholder='title' value={titleText} onChange={(event) => {setTitleText(event.target.value)}}></input>
+                    <input placeholder='text' value={postText} onChange={(event) => {setPostText(event.target.value)}}></input>
+                    <select id="outfitForm" placeholder="select outfit" data-style="btn-info" name="selectpicker" onChange={(e) => {
+                    setSelectedOutfitId(e?.target?.value || '');
+                    }}>
+                    {
+                            outfits.map((outfit) => {
+                            return (
+                            <option
+                                key={outfit._id}
+                                value={outfit._id}
+                                onClick={() => {
+                                setOutfitText(outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name);
+                                // setSelectedOutfitId(outfit?._id || '');
+                                console.debug("Selected outfit", outfit?._id);
+                                }}
+                                >
+                                {outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name}
+                                </option>);
+                            })
+                        }
+                    </select>
+                    <button onClick={() => {
+                        let data = JSON.stringify({
+                            "title": titleText,
+                            "text": postText,
+                            "outfit": selectedOutfitId,//"65139624709491f3b5286cf4",
+                            "userId": user?.sub
+                            });
 
-                        let config = {
-                        method: 'post',
-                        maxBodyLength: Infinity,
-                        url: 'http://localhost:8081/api/v1/Post/create',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            "user": JSON.stringify(user)
-                        },
-                        data : data
-                        };
+                            let config = {
+                            method: 'post',
+                            maxBodyLength: Infinity,
+                            url: 'http://localhost:8081/api/v1/Post/create',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                "user": JSON.stringify(user)
+                            },
+                            data : data
+                            };
 
-                        axios.request(config)
-                        .then((response) => {
-                        console.log(JSON.stringify(response.data));
-                        setTitleText('');
-                        setPostText('');
-                        fetchPosts();
-                        })
-                        .catch((error) => {
-                        console.log(error);
-                        });
+                            axios.request(config)
+                            .then((response) => {
+                            console.log(JSON.stringify(response.data));
+                            setTitleText('');
+                            setPostText('');
+                            fetchPosts();
+                            })
+                            .catch((error) => {
+                            console.log(error);
+                            });
 
-                }}>Submit</button>
+                    }}>Submit</button>
                 </div>
 
                 <div className="repeating-cards" >
@@ -161,10 +180,10 @@ function CommunityPage () {
                                     </div>
                                     <div className="text">
                                         <div className="description-box">
-                                            <div className="description">{post.text}</div>
+                                            <div className="description" style={{ fontSize: `${updateFontSize(post.text)}vw` }}>{post.text}</div>
                                         </div>
                                         <div className="title-box">
-                                            <div className="title">{post.title}</div>
+                                            <div className="title" style={{ fontSize: `${updateFontSizeTitle(post.title)}vw` }}>{post.title}</div>
                                         </div>
                                     </div>
                                     

@@ -10,13 +10,13 @@ body {
 .card {
   background-color: #6e1ead;
   border-radius: 2vw;
-  /* height: 40.1vw; */
+  height: 30.1vw;
   /* position: relative; */
   width: 68.42vw;
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
-  height: fit-content; 
+
 }
 
 .card .image-stack {
@@ -75,7 +75,7 @@ body {
 .card .description {
   color: var(--inklighter);
   font-family: "Montserrat-Regular", Helvetica;
-  font-size: 1vw;
+  font-size: 3vw;
   font-weight: 400;
   left: 2.29vw;
   letter-spacing: 0;
@@ -104,7 +104,7 @@ body {
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 0vw;
+  top: 0.5vw;
   width: 38.6vw;
 }
 
@@ -117,21 +117,33 @@ body {
 }
 
 .inputBox {
-  align-items: flex-start;
+  align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  gap: 1vw;
-  padding: 0vw 9vw;
-  position: absolute;
+  /* gap: 1vw;
+  padding: 0vw 9vw; */
+  /* position: absolute; */
+  width:52vw;
+  height: 2vw;
+}
 
-  /* left: 33vw; */
+button{
+  height:100%;
+  width:30%;
+}
+
+select{
+  height:100%;
+  width:50%;
+}
+
+input {
+  height:85%;
+  width:80%;
 }
 
 .black-background .card {
-  height: 40.93vw;
-  /* left: -3.697vw; */
-  /* position: absolute; */
-  /* top: 0; */
+  height: 38vw;
   width: 67.618960vw;
 }
 
@@ -153,7 +165,7 @@ body {
   line-height: normal;
   position: absolute;
   top: 2.47vw;
-  width: 78.38vw;
+  width: 29vw;
 }
 
 .black-background {
@@ -165,7 +177,7 @@ body {
   height: fit-content;
   padding: 10vw 23vw 31.5vw;
   position: relative;
-  width: auto;
+  width: fit-content;
 }
 
 .black-background .text {
