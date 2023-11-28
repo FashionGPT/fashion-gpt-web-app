@@ -17,6 +17,7 @@ function Nav() {
                 <li><a href="/">FashionGPT</a></li>
                 <li><a href="/prompt">Generate</a></li>
                 <li><a href="/community">Community</a></li>
+                <li><a href="/clothing-feed">Feed</a></li>
             </div>
           <li><a style={{justifyContent: "right"}} onClick={() => loginWithRedirect()}>Log In</a></li>
           <li><a style={{justifyContent: "right"}} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>

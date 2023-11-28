@@ -12,6 +12,7 @@ import Nav from "./components/Navbar/Nav";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history.jsx";
 import CommunityPage from './components/Community/communityPage';
 import Prompt from './components/Prompt/Prompt'
+import ClothingFeed from './components/ClothingFeed/ClothingFeed';
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,13 @@ const router = createBrowserRouter([
         element: <Auth0ProviderWithHistory>
             <Nav />
             <CommunityPage />
+        </Auth0ProviderWithHistory>
+    },
+    {
+        path: "/clothing-feed",
+        element: <Auth0ProviderWithHistory>
+            <Nav />
+            <ClothingFeed />
         </Auth0ProviderWithHistory>
     }
 ]);
