@@ -91,9 +91,9 @@ function CommunityPage () {
             <div className="black-background"> 
                 <div className="cm-title">Community Page</div>
                 <div className="inputBox">
-                    <input placeholder='title' value={titleText} onChange={(event) => {setTitleText(event.target.value)}}></input>
-                    <input placeholder='text' value={postText} onChange={(event) => {setPostText(event.target.value)}}></input>
-                    <select id="outfitForm" placeholder="select outfit" data-style="btn-info" name="selectpicker" onChange={(e) => {
+                    <input className="communityInput" placeholder='title' value={titleText} onChange={(event) => {setTitleText(event.target.value)}}></input>
+                    <input className="communityInput" placeholder='text' value={postText} onChange={(event) => {setPostText(event.target.value)}}></input>
+                    <select className="communitySelect" id="outfitForm" placeholder="select outfit" data-style="btn-info" name="selectpicker" onChange={(e) => {
                     setSelectedOutfitId(e?.target?.value || '');
                     }}>
                     {
@@ -113,7 +113,7 @@ function CommunityPage () {
                             })
                         }
                     </select>
-                    <button onClick={() => {
+                    <button className="communityButton" onClick={() => {
                         let data = JSON.stringify({
                             "title": titleText,
                             "text": postText,

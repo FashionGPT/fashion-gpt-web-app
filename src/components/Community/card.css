@@ -127,17 +127,17 @@ body {
   height: 2vw;
 }
 
-button{
+.communityButton {
   height:100%;
   width:30%;
 }
 
-select{
+.communitySelect{
   height:100%;
   width:50%;
 }
 
-input {
+.communityInput {
   height:85%;
   width:80%;
 }
