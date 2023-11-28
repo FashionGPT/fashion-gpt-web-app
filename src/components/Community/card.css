@@ -1,38 +1,209 @@
-.card-container {
-  width: 95%;
-  border-radius: 1rem;
-  box-shadow: 0px 10px 8px #999;
+:root {
+  --inkdarkest: rgba(9, 10, 10, 1);
+  --inklighter: rgba(114, 119, 122, 1);
+}
+
+body {
+  background-color: #202325;
+  }
+
+.card {
+  background-color: #6e1ead;
+  border-radius: 2vw;
+  height: 30.1vw;
+  /* position: relative; */
+  width: 68.42vw;
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
-  background-color: white;
+
+}
+
+.card .image-stack {
+  height: 28.56882407vw;
+  left: 51.2vw;
+  position: relative;
+  top: 4.68vw;
+  width: 14.14585232vw;
+}
+
+.card .top {
+  height: 8.924339107vw;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0vw;
+  width: 14.14585232vw;
+}
+
+.card .middle {
+  height: 8.924339107vw;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 10vw;
+  width: 14.14585232vw;
+}
+
+.card .bottom {
+  height: 8.924339107vw;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 20vw;
+  width: 14.14585232vw;
+}
+
+.card .text {
   height: fit-content;
+  left: 1.39vw;
+  position: absolute;
+  top: -26vw;
+  width: 47.2vw;
 }
 
-.card-outfit-content {
-  flex-direction: row;
+.card .description-box {
+  background-color: var(--inkdarkest);
+  border-radius: 0vw 0vw 2vw 2vw;
+  height: 31.67vw;
+  left: 0;
+  position: absolute;
+  top: 2.58vw;
+  width: 47.2vw;
+}
+
+.card .description {
+  color: var(--inklighter);
+  font-family: "Montserrat-Regular", Helvetica;
+  font-size: 3vw;
+  font-weight: 400;
+  left: 2.29vw;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 3vw;
+  width: 41.9vw;
+}
+
+.card .title-box {
+  background-color: #52595d;
+  border-radius: 2vw 2vw 0vw 0vw;
+  height: 2.68vw;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 47.2vw;
+}
+
+.card .title {
+  color: #ffffff;
+  font-family: "Montserrat-SemiBold", Helvetica;
+  font-size: 2vw;
+  font-weight: 600;
+  left: 2.49vw;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0.5vw;
+  width: 38.6vw;
+}
+
+.black-background .repeating-cards {
+  height: auto;
+  left: 20.41vw;
+  position: absolute;
+  top: 36.7vw;
+  width: 62.6189608vw;
+}
+
+.inputBox {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  /* gap: 1vw;
+  padding: 0vw 9vw; */
+  /* position: absolute; */
+  width:52vw;
+  height: 2vw;
+}
+
+.communityButton {
+  height:100%;
+  width:30%;
+}
+
+.communitySelect{
+  height:100%;
+  width:50%;
+}
+
+.communityInput {
+  height:85%;
+  width:80%;
+}
+
+.black-background .card {
+  height: 38vw;
+  width: 67.618960vw;
+}
+
+.black-background .img {
+  height: 37.1vw;
+  left: -.04vw;
+  /* position: absolute; */
+  top: 47vw;
+  width: 69.2vw;
+}
+
+.black-background .cm-title {
+  color: #ffffff;
+  font-family: "Montserrat-SemiBold", Helvetica;
+  font-size: 3.48vw;
+  font-weight: 600;
+  left: 35.0vw;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 2.47vw;
+  width: 29vw;
+}
+
+.black-background {
+  align-items: flex-start;
+  background-color: #202325;
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 1rem;
-}
-
-.card-outfit-piece {
   flex-direction: column;
-  display: flex;
-  text-align: center;
-}
-  
-.card-img {
-  width: 100%;
-  border-radius: 1rem 1rem 0 0;
+  gap: 14.7vw;
+  height: fit-content;
+  padding: 10vw 23vw 31.5vw;
+  position: relative;
+  width: fit-content;
 }
 
-.card-title {
-  margin: 1rem;
+.black-background .text {
+  color: #ffffff;
+  font-family: "Montserrat-SemiBold", Helvetica;
+  font-size: .1vw;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -0.001vw;
+  position: relative;
+  width: fit-content;
 }
 
-.card-description {
-  margin: 1rem;
+.black-background .repeating-cards {
+  height: 82.9vw;
+  left: 15vw;
+  position: absolute;
+  top: 15vw;
+  width: 68.4vw;
 }
 
-  
+.black-background .img {
+  height: 36.9vw;
+  left: 0vw;
+  /* position: absolute; */
+  top: 46.8vw;
+  width: 68.9vw;
+}
