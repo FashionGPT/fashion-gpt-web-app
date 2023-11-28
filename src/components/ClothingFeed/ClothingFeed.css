@@ -1,0 +1,145 @@
+.clothing-card {
+    max-width: 30rem;
+    width: 95%;
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    background-color: #909090;
+    height: fit-content;
+    margin-top: 0;
+    margin-bottom: 2.3rem;
+}
+
+.out {
+    max-width: 35rem;
+    width: 95%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    background-color: #6e1ead;
+    height: fit-content;
+}
+
+.clothing-title {
+    font-family: 'Montserrat';
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    color: var(--ink-lighter, #ffffff);
+}
+
+.date-container {
+    max-width: 30rem;
+    width: 95%;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    background-color: #52595d;
+    height: fit-content;
+    margin-bottom: 0;
+    margin-top: 2.3rem;
+}
+
+.clothing-date {
+    color: var(--ink-lighter, #ffffff);
+    font-size: 1.8rem;
+    text-align: center;
+    font-family: 'Montserrat';
+}
+
+.clothing-content {
+    text-align: center;
+    font-family: 'Montserrat';
+}
+
+.shirt-title {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.pants-name {
+    font-size: 1.5em;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.shoe-name {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.shirt-container {
+    max-width: 25%;
+    width: 50%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    background-color: #442222;
+    height: fit-content;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.pants-container {
+    max-width: 25%;
+    width: 50%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    background-color: #442222;
+    height: fit-content;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.shoes-container {
+    max-width: 25%;
+    width: 50%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    background-color: #442222;
+    height: fit-content;
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+
+.shirt-pic {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.pants-image {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.shoe-image {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
