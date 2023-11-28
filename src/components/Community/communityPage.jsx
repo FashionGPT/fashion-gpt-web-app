@@ -104,7 +104,7 @@ function CommunityPage () {
                                 value={outfit._id}
                                 onClick={() => {
                                 setOutfitText(outfit?.shirt?.name + ", " + outfit?.pants?.name + ", " + outfit?.shoes?.name);
-                                // setSelectedOutfitId(outfit?._id || '');
+            ~                    // setSelectedOutfitId(outfit?._id || '');
                                 console.debug("Selected outfit", outfit?._id);
                                 }}
                                 >
